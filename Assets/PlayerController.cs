@@ -16,13 +16,16 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate() {
 
-      /*  while (Input.GetKey(KeyCode.LeftArrow)) {
+        /*if (Input.GetKey(KeyCode.LeftArrow)) {
             rotation-= 5;
         }
-         while (Input.GetKey(KeyCode.RightArrow)) {
+        
+        if (Input.GetKey(KeyCode.RightArrow)) {
             rotation+= 5;
         }
-        Console.WriteLine("Rotation: " + rotation);*/
+
+        Debug.Log("Rotation: " + rotation);
+        rb.MoveRotation(new Quaternion(0,rotation,0,1));*/
 
         float moveHorizontal = Input.GetAxis("Horizontal");        
         float moveVertical = Input.GetAxis("Vertical");
