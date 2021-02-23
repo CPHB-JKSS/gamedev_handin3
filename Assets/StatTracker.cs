@@ -15,7 +15,7 @@ public class StatTracker : MonoBehaviour
         if ((collider.gameObject.name.Contains("Wall") || collider.gameObject.name.Contains("Cylinder")) && timerGoing)
         {
             wallHits++;
-            Debug.Log(walls.gameObject.name + " HIT! oof...");
+            //Debug.Log(walls.gameObject.name + " HIT! oof...");
         }
     }
     void OnTriggerEnter(Collider collider)
@@ -31,9 +31,11 @@ public class StatTracker : MonoBehaviour
         if (collider.gameObject.name == endZone.name)
         {
             timerGoing = false;
-            Debug.Log("Time spent: " + elapsedTime);
+            //Debug.Log("Time spent: " + elapsedTime);
+            //Debug.Log("Walls hit: " + wallHits);
+            Debug.Log(Score());
         }
-        Debug.Log("Enter: " + collider.gameObject.name);
+        //Debug.Log("Enter: " + collider.gameObject.name);
     }
 
     void OnTriggerExit(Collider collider)
@@ -48,13 +50,19 @@ public class StatTracker : MonoBehaviour
         }
     }
 
+    string Score(){
+
+        return "Final score:"+(1000-(elapsedTime+(wallHits*3))).ToString("0");
+    }
+
+
     // Update is called once per frame
     void Update()
     {
         if (timerGoing)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log(elapsedTime);
+            //Debug.Log(elapsedTime);
         }
     }
 }
