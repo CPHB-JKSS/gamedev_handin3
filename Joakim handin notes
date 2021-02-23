@@ -1,0 +1,48 @@
+I dette projekt har vi benyttet os af følgende topics i flow 1:
+    - Camera
+    - Inspector
+    - Simple shapes
+    - Components
+    - Scripting
+    - Input
+    - Colliders & Triggers
+
+Spillet går ud på at føre en kugle fra den ene ende af banen, til den anden. 
+Kulgen starter i en startzone, og skal føres til 'endzone'. 
+Undervejs bliver der taget tid på hvor lang tid det tager at komme fra start til slut.
+Hvis man rammer en væg, vil der blive pålagt en straf, som trækker fra den endelige score når man har gennemført banen.
+
+
+Inspector
+    Dette er et værktøj som er en fundemental del af Unity-miljøet til at få detaljeret info om de game-objects man arbejder med
+    I inspectoren kan man yderligere tilføje og konfigurere 'components'.
+
+Components
+    'This is where the magic happens'.
+    Komponenter er alt som et objekt er bestående af. Alle objektor har en "Transform" som bestemmer hvor og hvordan et objekt
+    eksisterer i den virtuelle verden. Størrelse, rotation m.m. bestemmes heraf.
+    Ydermere kan man tilføje ting som rigid-bodies, custom scripts osv.
+
+Camera:
+    Vi har lavet et kamera der følger kuglen fra en bestemt vinkel, men som altid er horizontalt, selv når kuglen ruller.
+
+Simple shapes:
+    Unity har en række shapes man kan benytte sig af til at forme game-objects af. Vi har i dette projekt benyttet os af fire:
+        - Sphere, Plane, Cube, Cylinder
+
+Colliders:
+    Vi benytter colliders til at få forskellige objektor til, fysisk, at interagere med hinanden. F.eks. bruger vi en rigid-body-
+    component, på vores kugle, til at få den til at kollidere med vores plan og andre objektor i den virtuelle verden, som alle 
+    har deres egne colliders.
+
+Triggers:
+    Til at definere vores start- og endzone benytter vi 'mesh'-colliders til at lave en trigger. Dette gør at vi kan definere et
+    areal i rummet, som vi kan basere vores scripts på. Bla. til at starte en timer m.m.
+
+Scripting:
+    I vores scripts har vi bla. kodet en timer, der starter når "OnTriggerEnter()" bliver kaldt. Denne fungere ved brug af
+    "Time.deltaTime". Denne metode bliver kaldt hver frame, og returnere dermed tiden der er gået, siden den seneste frame. 
+    Dette tæller vi op over tid, og giver os vores timer.
+    Når "OnTriggerExit()" bliver kaldt, stopper vi denne timer.
+
+    Når tiden er tæller, benytter vi også "OnCollisionEnter()" til at tælle hvor mange gange man rammer en væg.
