@@ -1,48 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
+
 
 public class StatTracker : MonoBehaviour
 {
 
     public GameObject startZone, endZone;
-    private TimerState timer;
+    private bool timerGoing;
+    private float elapsedTime;
 
 
     void OnTriggerEnter(Collider collider) {
-        // If entering endzone
-        if (collider.gameObject.name == endZone.name) { 
-            Debug.Log(timer.deltaTime);
+        // If entering startZone
+        if (collider.gameObject.name == startZone.name) {
+            timerGoing = false;
+            elapsedTime = 0f;
         }
 
-
-
+        // If entering endZone
+        if (collider.gameObject.name == endZone.name) {
+            timerGoing = false;
+            Debug.Log("Time spent: " + elapsedTime);
+        }
         Debug.Log("Enter: " + collider.gameObject.name);
     }
 
     void OnTriggerStay(Collider collider) {
+        // If entering endZone
+        if (collider.gameObject.name == endZone.name) {
 
+        }
     }
 
     void OnTriggerExit(Collider collider) {
-        // If exitting startzone
+        // If exitting startZone
         if (collider.gameObject.name == startZone.name) { 
-            Debug.Log(timer.now);
-
+            timerGoing = true;
 
             Debug.Log("Exit: " + collider.gameObject.name);
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(timerGoing) {
+            elapsedTime += Time.deltaTime;
+            Debug.Log(elapsedTime);
+        }
     }
 }
