@@ -7,7 +7,12 @@ public class StatTracker : MonoBehaviour
     private float elapsedTime;
     public GameObject startZone, endZone, walls;
     //private TimerState timer;
-    public int wallHits;
+    public int wallHits, ballHits;
+
+    public int counterWalls;
+    public int counterBalls;
+
+    public ObjectSpawner spawner;
 
     void OnCollisionEnter(Collision collider)
     {
@@ -15,7 +20,17 @@ public class StatTracker : MonoBehaviour
         if ((collider.gameObject.name.Contains("Wall") || collider.gameObject.name.Contains("Cylinder")) && timerGoing)
         {
             wallHits++;
+            spawner.SpawnThing();
             //Debug.Log(walls.gameObject.name + " HIT! oof...");
+            counterWalls++;
+            Debug.Log(itemsHit());
+        }
+
+        if (collider.gameObject.name.Contains("EnemyBall"))
+        {
+            ballHits++;
+            counterBalls++;
+            Debug.Log(itemsHit());
         }
     }
     void OnTriggerEnter(Collider collider)
@@ -45,14 +60,19 @@ public class StatTracker : MonoBehaviour
         {
             timerGoing = true;
             wallHits = 0;
-
+            ballHits = 0;
             //Debug.Log("Exit: " + collider.gameObject.name);
         }
     }
 
-    string Score(){
+    string itemsHit()
+    {
+        return "Walls hit: " + counterWalls + " Balls hit: " + counterBalls;
+    }
+    string Score()
+    {
 
-        return "Final score:"+(1000-(elapsedTime+(wallHits*3))).ToString("0");
+        return "Final score:" + (1000 - (elapsedTime + (wallHits * 3) + (ballHits * 3))).ToString("0");
     }
 
 
