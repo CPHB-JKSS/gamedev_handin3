@@ -17,7 +17,7 @@ public class StatTracker : MonoBehaviour
     void OnCollisionEnter(Collision collider)
     {
 
-        if ((collider.gameObject.name.Contains("Wall") || collider.gameObject.name.Contains("Cylinder")) && timerGoing)
+        if ((collider.gameObject.name.Contains("Cube") || collider.gameObject.name.Contains("Wall") || collider.gameObject.name.Contains("Cylinder")) && timerGoing)
         {
             wallHits++;
             spawner.SpawnThing();

@@ -102,7 +102,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.3f);
+        Gizmos.color = new Color(0, 0.8f, 0, 0.3f);
         Gizmos.DrawCube(center, size);
     }
 }
